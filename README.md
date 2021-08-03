@@ -12,3 +12,5 @@ chicago.csv, washington.csv, new_york_city.csv
 
 ### Credits
 Udacity python course
+Python crash course book
+Python one-liner book
