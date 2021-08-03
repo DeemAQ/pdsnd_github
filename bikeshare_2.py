@@ -80,11 +80,11 @@ def time_stats(df):
     # display the most common month
     most_common_month = df['Start Time'].dt.month.value_counts().keys()[0]
     month = months_in_string(most_common_month)
-    print('Most common month is:', month)
+    print(f'Most common month is: {month}')
 
     # display the most common day of week
     most_common_dow = df['Start Time'].dt.day_name().value_counts().keys()[0]
-    print('Most common day of week is:', most_common_dow)
+    print(f'Most common day of week is: {most_common_dow}')
 
     # display the most common start hour
     most_common_hour = df['Start Time'].dt.hour.value_counts().keys()[0]
@@ -92,7 +92,7 @@ def time_stats(df):
     from time import strftime
     t = strptime(str(most_common_hour), "%H")
     hour = strftime("%I %p", t)
-    print('Most common hour is:', hour)
+    print(f'Most common hour is: {hour}')
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-' * 40)
@@ -118,11 +118,11 @@ def station_stats(df):
 
     # display most commonly used start station
     most_common_start_station = df['Start Station'].value_counts().keys()[0]
-    print('Most commonly used start station is:', most_common_start_station)
+    print(f'Most commonly used start station is: {most_common_start_station}')
 
     # display most commonly used end station
     most_common_end_station = df['End Station'].value_counts().keys()[0]
-    print('Most commonly used end station is:', most_common_end_station)
+    print(f'Most commonly used end station is: {most_common_end_station}')
 
     # display most frequent combination of start station and end station trip
     freq_combination = df.groupby(['Start Station', 'End Station']).size().sort_values(ascending=False).keys()
@@ -161,14 +161,14 @@ def user_stats(df):
 
     # Display counts of user types
     user_type_count = df['User Type'].value_counts()
-    print('Users type count:\n', user_type_count)
+    print(f'Users type count:\n{user_type_count}')
 
     if 'Gender' not in df.columns:
         print('No gender information')
     else:
         # Display counts of gender
         user_gender_count = df['Gender'].value_counts()
-        print('Users gender counts:\n', user_gender_count)
+        print(f'Users gender counts:\n{user_gender_count}')
 
     if 'Birth Year' not in df.columns:
         print('No birth year information')
@@ -177,14 +177,14 @@ def user_stats(df):
         # earliest
         earliest_birth_year = df.sort_values(by=['Birth Year']).values[0]
         earliest_birth_year = int(earliest_birth_year[len(earliest_birth_year) - 1])
-        print('Earliest birth year', earliest_birth_year)
+        print(f'Earliest birth year {earliest_birth_year}')
         # most recent
         most_recent_birth_year = df.sort_values(by=['Birth Year'], ascending=False).values[0]
         most_recent_birth_year = int(most_recent_birth_year[len(most_recent_birth_year) - 1])
-        print('Most recent birth year', most_recent_birth_year)
+        print(f'Most recent birth year {most_recent_birth_year}')
         # most common
         most_common_birth_year = int(df['Birth Year'].value_counts().keys()[0])
-        print('Most common birth year is', most_common_birth_year)
+        print(f'Most common birth year is {most_common_birth_year}')
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-' * 40)
